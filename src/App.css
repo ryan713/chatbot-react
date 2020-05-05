@@ -1,38 +1,463 @@
-.App {
-  text-align: center;
+:root {
+    --main-color: black;
+    --secondary-color: hsla(221, 100%, 50%, 0.8);  
+    --main-text-color: white;
+    --secondary-text-color: gray;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    font-weight: 200;
+    color: 	black; 
+    background-color: whitesmoke;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+.app {
+    height: 100%;
+    width: 100%;
+    animation-name: slide-into;
+    animation-duration: 1s;
+    display: grid;
+    grid-template-columns: 200px 250px 250px 0.5fr 200px 200px;
+    grid-template-rows: 100px 0.4fr 0.6fr 100px;
+    grid-template-areas:    "x h h d a a"
+                            "x m m d a a"
+                            "x m m d i i"
+                            "x f f d i i";                         
+}
+
+.x {
+    grid-area: x;
+}
+
+.design {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: d;
+}
+
+.design-hr, .txt-nav-btn-hr {
+    height: 100%;
+    width: 1px;
+    background-color: var(--main-color);
+    animation-name: slide-into;
+    animation-duration: 2s;
+}
+
+.design-hr {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.25), 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+    margin: 50px 50px 50px 75px;
+}
+
+.about {
+    grid-area: a;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+.instructions {
+    margin-top: 0px;
+    grid-area: i;
+}
+
+.about, .instructions {
+    display: flex;
+    flex-direction: column;
+    animation-name: slide-up;
+    animation-duration: 2s;
+}
+
+.about-title, .instructions-title {  
+    text-shadow: 3px 3px lightgray;
+    font-size: xx-large;
+    animation-name: slide-up;
+    animation-duration: 1s;
+    padding: 10px;
+    font-weight: 300;
+    color: var(--main-color);
+}
+
+.about-hr, .instructions-hr {
+    height: 1px;
+    background-color: var(--main-color);
+    margin: 0px 5px 15px 10px;
+    animation-name: slide-up;
+    animation-duration: 2s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.about-text, .instructions-text {
+    font-size: large;
+    animation-name: slide-up;
+    animation-duration: 2s;
+    padding: 5px 10px;
+    font-weight: 150;
+    text-align: justify;
+    font-style: italic;
+    color: var(--main-color);
+}
+
+.header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    grid-area: h;
+    padding: 25px;
+    margin-top: 10px;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: large;
+    color: var(--main-text-color);
+    align-self: center;
+}
+
+.bot-status {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.bot-status-off, .bot-status-on {
+    animation-name: slide-into;
+    animation-duration: 4s;
+    border-radius: 6px;
+    width: 6px;
+    height: 6px;
+    margin: 5px;
+}
+
+.bot-status-off {
+    background-color: salmon;
+    border: 3px solid red;
+}
+
+.bot-status-on {
+    background-color: lightgreen;
+    border: 3px solid green;
+}
+
+.bot-state {
+    animation-name: slide-up;
+    animation-duration: 2s;
+    color: var(--main-text-color);
+    font-size: small;
+    font-style: italic;
+    margin: 2.5px;
+}
+
+.message-list {
+    grid-area: m;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow: scroll;
+    background-color: var(--main-text-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.empty-message-list {
+    cursor: not-allowed;
+    grid-area: m;
+    padding: 225px 115px 225px 115px;
+    font-style: italic;
+    font-weight: 250;
+    font: outline;
+    color: gray;
+    text-align: center;
+    text-shadow: black;
+    background-color: var(--main-text-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.new-message-form {
+    grid-area: f;
+    border-style: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-right: 16px;
+    margin-bottom: 15px;
+}
+
+.new-message-input {
+    transition: all 0.25s ease-in;
+    grid-area: f;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: medium;
+    border-style: none;
+    color: var(--secondary-text-color);
+    outline: none;
+    background-color: var(--main-text-color);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
+::placeholder { 
+    color: var(--secondary-text-color);
+    opacity: 1;
   }
+
+.message-left, .message-right {
+    position: relative;
+    transition: all 1s ease;
+    background-color: var(--secondary-color);
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer !important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25), 0 3px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.message-left:hover, .message-right:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.message-left {
+    border-bottom-left-radius: 0px;
+    margin-right: 250px;
+    align-self: flex-start;
+    animation-name: slide-in;
+    animation-duration: 1s;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.message-right {
+    align-self: flex-end;
+    border-bottom-right-radius: 0px;
+    margin-left: 250px;
+    animation-name: slide-up;
+    animation-duration: 1s;
+}
+
+.message-text {
+    font-weight: normal;
+    font-size: medium;
+    margin: 2px;
+}
+
+.timestamp-left, .timestamp-right {
+    font-size: small;
+    font-style: italic;
+    color: var(--main-text-color);
+    margin: 2px;
+    font-weight: 100;
+}
+
+.timestamp-left {
+    text-align: left;
+}
+
+.timestamp-right {
+    text-align: right;
+}
+
+.login-signup {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    width: 100%;
+    padding: 15px 0px;
+    background-color: var(--secondary-color);
+    color: var(--main-text-color);
+    font-size: x-large;
+    font-style: italic;
+    font-weight: 100;
+    margin-bottom: 10px;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    cursor: default;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.txt-nav-btn {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.txt-nav-btn-hr {
+    margin: 0px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.prev-new-user, .goback {
+    color: var(--main-color);
+    text-decoration: none;
+    font-size: small;
+    font-style: italic;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    animation-name: slide-in;
+    animation-duration: 2s;
+    transition: all 0.5s ease;
+    position: relative;
+    top: 0%;
+}
+
+.prev-new-user:hover, .goback:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.user-details-form {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.username-form, .password-form {  
+    margin-left: 10px;
+    border-style: none;
+    width: 100%;
+    font-size: medium;
+    cursor: text;
+    outline: none;
+}
+
+.username-field, .password-field {
+    padding: 5px 0px;
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    margin: 15px 0px;
+    font-weight: 300;
+    font-style: bold;
+    font-size: medium;
+    color: var(--main-color);
+    cursor: default;
+    transition: all 0.5s ease;
+    border-bottom: 1px solid gray;
+}
+
+.login-signup-btn, .get-started-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    transition: background-color 1s ease;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-signup-btn {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    border-radius: 20px;
+    color: var(--main-color);
+    background-color: var(--main-text-color);
+}
+
+.login-signup-btn:hover {
+    color: var(--main-text-color);
+    background-color: var(--main-color);
+}
+
+.get-started-btn {
+    animation-name: slide-up;
+    animation-duration: 3s;
+    font-size: medium;
+    align-self: center;
+    border: none;
+    border-radius: 25px;
+    width: 50%;
+    color: var(--secondary-color);
+    background-color: var(--main-text-color);
+    margin-top: 30px;
+}
+
+.get-started-btn:hover {
+    color: var(--main-text-color);
+    background-color: var(--secondary-color);
+}
+
+.popup {  
+    position: absolute;  
+    width: 100%;  
+    height: 100%;  
+    margin: auto;  
+    display: block;
+}  
+
+@keyframes slide-into {
+    0% {
+        opacity: 0;
+        transform: translateZ(-50px);
+    }
+    100% {
+        transform: translateZ(0px);
+    }
+}
+
+.popup-outer {
+    z-index: 1;
+    cursor: not-allowed;
+    background-color: var(--main-color);  
+    position: absolute;    
+    opacity: 0.5;
+    animation-name: slide-into;
+    animation-duration: 1s; 
+    width: 100%;
+    height: 100%;
+}
+
+.popup-inner {
+    z-index: 2;
+    animation-name: slide-up;
+    animation-duration: 2s;    
+    background: white; 
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    bottom: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
 }
