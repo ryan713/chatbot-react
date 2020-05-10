@@ -1,5 +1,6 @@
-This is the frontend or the client side for one of my previous project. In this project I've deployed my AI chatbot model as a web application. Once deployed it'll be avaialable for anybody to use. The backend required for this has been put in a separate repository as it is a Flask REST API which lets the developer interact with AI using simple HTTP requests.
+This is the frontend or the client side for one of my previous project. In this project I've tranformed my AI chatbot model project into a web application. Once deployed on a server, it'll be available for anybody to use. The backend required for this has been put in a separate repository as it is a Flask REST API which lets any developer interact with the AI using simple HTTP requests.
 
+For running this project, read on.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
